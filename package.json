@@ -1,0 +1,57 @@
+{
+  "name": "canibrowse",
+  "version": "1.0.0",
+  "description": "Supported browser verification service",
+  "main": "index.js",
+  "author": "Levi Thomason",
+  "license": "MIT",
+  "scripts": {
+    "lint": "prettier --list-different \"**/*.js?(on|x)\" && eslint \"**/*.js?(on|x)\"",
+    "lint:fix": "prettier --write \"**/*.js?(on|x)\" && eslint --fix \"**/*.js?(on|x)\"",
+    "precommit": "lint-staged",
+    "start": "node src",
+    "dev": "nodemon src",
+    "test": "jest",
+    "test:watch": "yarn jest -- --watch"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": ["src/**/*.js", "!**/node_modules/**", "!**/test/**"],
+    "coverageDirectory": "coverage",
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 50,
+        "lines": 50,
+        "statements": 50
+      }
+    },
+    "roots": ["./test"],
+    "testMatch": ["**/*.spec.js"]
+  },
+  "lint-staged": {
+    "*.js?(on|x)": ["prettier --write", "eslint --fix", "git add"]
+  },
+  "engines": {
+    "node": "8.2.x"
+  },
+  "dependencies": {
+    "bowser": "^1.7.1",
+    "browserslist": "^2.3.3",
+    "express": "^4.15.4",
+    "node-http-error": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.4.1",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-plugin-json": "^1.2.0",
+    "eslint-plugin-prettier": "^2.2.0",
+    "greenkeeper-lockfile": "^1.8.1",
+    "husky": "^0.14.3",
+    "jest": "^20.0.4",
+    "lint-staged": "^4.0.3",
+    "nodemon": "^1.11.0",
+    "prettier": "prettier/prettier#5c539b06a477995c588aaf03a4662a4ad8c68c20"
+  }
+}
