@@ -1,0 +1,9 @@
+#
+# Heads up!
+# Keep in sync with .prettierignore
+#
+
+**/lib/**
+.meteor/**
+.yarn-cache/**
+public/phaser/**

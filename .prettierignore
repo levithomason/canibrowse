@@ -1,0 +1,9 @@
+#
+# Heads up!
+# Keep in sync with .eslintignore
+#
+
+**/lib/**
+.meteor/**
+.yarn-cache/**
+public/phaser/**
