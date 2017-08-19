@@ -1,6 +1,8 @@
 Can I Browse
 ============
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/levithomason/canibrowse.svg)](https://greenkeeper.io/)
+
 Determine if you user's are using a supported browser.
 
 ## Why?
