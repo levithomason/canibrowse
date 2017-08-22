@@ -34,7 +34,10 @@
     "*.js?(on|x)": ["prettier --write", "eslint --fix", "git add"]
   },
   "now": {
-    "alias": "canibrowse.now.sh"
+    "alias": "canibrowse.now.sh",
+    "env": {
+      "NODE_ENV": "production"
+    }
   },
   "engines": {
     "node": "8.2.x"

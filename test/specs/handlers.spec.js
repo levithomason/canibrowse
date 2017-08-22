@@ -2,7 +2,6 @@ const _ = require('lodash')
 const HTTPError = require('node-http-error')
 
 const { getRoot, requestToArguments } = require('../../src/handlers')
-const userAgents = require('../fixtures/userAgents')
 
 const DEFAULT_REQ = { header: () => {}, query: {} }
 const DEFAULT_RES = { json: () => {} }
@@ -105,16 +104,14 @@ describe('handlers', () => {
   })
 
   describe('getRoot', () => {
-    test('throws if missing req.query.ua', () => {
+    test('throws if browsers and mobile and tablet were not specified', () => {
       expect(() => getRoot(req(), res())).toThrow(
-        new HTTPError(400, 'Missing required `ua` query param. Docs https://goo.gl/RJGJgf.'),
+        new HTTPError(400, 'Request has no requirements. Docs https://goo.gl/RJGJgf.'),
       )
     })
 
-    test('throws if no browsers were specified ', () => {
-      expect(() => getRoot(req({ query: { ua: userAgents.chrome51Mac } }), res())).toThrow(
-        new HTTPError(400, 'Request has no browser requirements. Docs https://goo.gl/RJGJgf.'),
-      )
+    test('does not throw when excluding mobile and tablet', () => {
+      expect(() => getRoot(req({ query: { mobile: false, tablet: false } }), res())).not.toThrow()
     })
   })
 })

@@ -33,7 +33,7 @@ Determine if your user's are using a supported browser.
 
 Hit the API with the browsers you support as query params:
 
-https://canibrowse.now.sh?chrome=60
+[`https://canibrowse.now.sh?chrome=60`](https://canibrowse.now.sh?chrome=60)
 
 Response in Chrome >= 60:
 
@@ -51,59 +51,59 @@ Response in Chrome >= 60:
 
 By default, browsers you do not specify are considered supported.
 
-https://canibrowse.now.sh?msie=9
+[`https://canibrowse.now.sh?msie=9`](https://canibrowse.now.sh?msie=9)
 
 |Chrome  |Firefox |IE8     |IE9     |
 |--------|--------|--------|--------|
-|✅      |✅     |❌       |✅      |
+|✓       |✓       |✖       |✓       |
 
 
 ### Only Chrome and Firefox
 
 Use `strict` if you support only the specified browsers and no others.
 
-https://canibrowse.now.sh?strict&chrome&firefox
+[`https://canibrowse.now.sh?strict&chrome&firefox`](https://canibrowse.now.sh?strict&chrome&firefox)
 
 |Chrome  |Firefox |IE      |Safari  |
 |--------|--------|--------|--------|
-|✅      |✅      |❌      |❌      |
+|✓       |✓       |✖       |✖       |
 
 ### Blacklist specific browsers
 
 Pass a browser as `false` to exclude all versions.
 
-https://canibrowse.now.sh?msie=false
+[`https://canibrowse.now.sh?msie=false`](https://canibrowse.now.sh?msie=false)
 
 |Chrome  |Firefox |IE      |Safari  |
 |--------|--------|--------|--------|
-|✅      |✅      |❌     |✅       |
+|✓       |✓       |✖       |✓       |
 
 ### Whitelist specific browsers
 
 Pass a browser as `true` or without a value to include all versions.
 
-https://canibrowse.now.sh?strict&chrome=true
-https://canibrowse.now.sh?strict&chrome
+[`https://canibrowse.now.sh?strict&chrome=true`](https://canibrowse.now.sh?strict&chrome=true)  
+[`https://canibrowse.now.sh?strict&chrome`](https://canibrowse.now.sh?strict&chrome)
 
 |Chrome 1 |Chrome ∞   |Other browsers|
 |----------|----------|--------------|
-|✅        |✅        |❌            |
+|✓         |✓         |✖             |
 
 ### Specify mobile or tablet
 
 You can specify `mobile` or `tablet`.
 
-https://canibrowse.now.sh?mobile=false&tablet=false
+[`https://canibrowse.now.sh?mobile=false&tablet=false`](https://canibrowse.now.sh?mobile=false&tablet=false)
 
 |Mobile  |Tablet  |Desktop |
 |--------|--------|--------|
-|❌      |❌      |✅     |
+|✖       |✖       |✓       |
 
 ### Debug what is going on
 
 Pass `debug` to see more info on the `detection` and `requirements`.
 
-https://canibrowse.now.sh?debug&chrome=60
+[`https://canibrowse.now.sh?debug&chrome=60`](https://canibrowse.now.sh?debug&chrome=60)
 
 ```js
 {
@@ -137,7 +137,7 @@ https://canibrowse.now.sh?debug&chrome=60
 
 Only returns `detected`, perhaps to do your own checks against.
 
-https://canibrowse.now.sh/detect
+[`https://canibrowse.now.sh/detect`](https://canibrowse.now.sh/detect)
 
 ### Send a custom user agent
 
@@ -151,11 +151,11 @@ These are possible with the current libraries we use, they just to be implemente
 >
 >Specify supported browsers by a [Browserslist][3] `query` like `last 2 versions` or `> 5%`.
 >
->https://canibrowse.now.sh?query=last 2 versions
+>[`https://canibrowse.now.sh?query=last 2 versions`](https://canibrowse.now.sh?query=last%202%20versions)
 >
 >|Older   |2 version old |Current |
 >|--------|--------------|--------|
->|❌      |✅           |✅      |
+>|✖      |✓            |✓       |
 >
 
 ## Credits

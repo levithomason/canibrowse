@@ -69,12 +69,8 @@ const requestToArguments = req => {
 const getRoot = (req, res) => {
   const { browsers, debug, mobile, strict, tablet, ua } = requestToArguments(req)
 
-  if (!ua) {
-    throw new HTTPError(400, 'Missing required `ua` query param. Docs https://goo.gl/RJGJgf.')
-  }
-
-  if (!mobile && !tablet && !Object.keys(browsers).length) {
-    throw new HTTPError(400, 'Request has no browser requirements. Docs https://goo.gl/RJGJgf.')
+  if (mobile === undefined && tablet === undefined && !Object.keys(browsers).length) {
+    throw new HTTPError(400, 'Request has no requirements. Docs https://goo.gl/RJGJgf.')
   }
 
   const result = isBrowserSupported(ua, { browsers, debug, mobile, strict, tablet })
