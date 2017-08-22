@@ -20,10 +20,12 @@ jobs:
       - run: yarn lint
       - run: yarn test
       - run: greenkeeper-lockfile-upload
-
-# deployment:
-#   staging:
-#     branch: master
-#     commands:
-#       - URL=$(now -t ${NOW_TOKEN})
-#       - now -t ${NOW_TOKEN} alias set ${URL} canibrowse.now.sh
+      - deploy:
+          name: Deploy master
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              now --token=${NOW_TOKEN} deploy --public
+              now --token=${NOW_TOKEN} alias
+              now --token=${NOW_TOKEN} scale canibrowse.now.sh 1
+              now --token=${NOW_TOKEN} remove --yes --safe canibrowse
+            fi
