@@ -1,10 +1,28 @@
 Can I Browse
-============
-
 [![CircleCI](https://img.shields.io/circleci/project/github/levithomason/canibrowse.svg?style=flat-square)]()
 [![David](https://img.shields.io/david/levithomason/canibrowse.svg?style=flat-square)]()
+============
 
-Determine if you user's are using a supported browser.
+Determine if your user's are using a supported browser.
+
+<!-- toc -->
+
+- [Why?](#why)
+- [Usage](#usage)
+- [Examples](#examples)
+  * [IE >= 9](#ie--9)
+  * [Only Chrome and Firefox](#only-chrome-and-firefox)
+  * [Blacklist specific browsers](#blacklist-specific-browsers)
+  * [Whitelist specific browsers](#whitelist-specific-browsers)
+  * [Specify mobile or tablet](#specify-mobile-or-tablet)
+  * [Debug what is going on](#debug-what-is-going-on)
+  * [Just get detection info](#just-get-detection-info)
+  * [Send a custom user agent](#send-a-custom-user-agent)
+- [Features I'd :heart: to see](#features-id-heart-to-see)
+  * [Query browser versions](#query-browser-versions)
+- [Credits](#credits)
+
+<!-- tocstop -->
 
 ## Why?
 
@@ -71,6 +89,16 @@ https://canibrowse.now.sh?strict&chrome
 |----------|----------|--------------|
 |✅        |✅        |❌            |
 
+### Specify mobile or tablet
+
+You can specify `mobile` or `tablet`.
+
+https://canibrowse.now.sh?mobile=false&tablet=false
+
+|Mobile  |Tablet  |Desktop |
+|--------|--------|--------|
+|❌      |❌      |✅     |
+
 ### Debug what is going on
 
 Pass `debug` to see more info on the `detection` and `requirements`.
@@ -91,9 +119,11 @@ https://canibrowse.now.sh?debug&chrome=60
     a: true,
   },
 
-  strict: false,            // value of strict passed
+  strict: false,            // was strict enabled
+  mobile: false,            // was mobile enabled
+  tablet: false,            // was tablet enabled
 
-  requirements: {           // browser requirements generated form the request
+  browsers: {               // browser requirements generated form the request
     chrome: {
       minVersions: ['60'],
       whitelisted: false,
@@ -127,15 +157,6 @@ These are possible with the current libraries we use, they just to be implemente
 >|--------|--------------|--------|
 >|❌      |✅           |✅      |
 >
->### Specify mobile or tablet
->
->You can specify `mobile` or `tablet`.
->
->https://canibrowse.now.sh?mobile=false&tablet=false
->
->|Mobile  |Tablet  |Desktop |
->|--------|--------|--------|
->|❌      |❌      |✅     |
 
 ## Credits
 

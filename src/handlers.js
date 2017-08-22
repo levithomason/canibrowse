@@ -4,42 +4,80 @@ const HTTPError = require('node-http-error')
 const { isBrowserSupported } = require('./controller')
 
 const requestToArguments = req => {
-  const { debug, ua: uaQuery, strict } = req.query
-  delete req.query.debug
-  delete req.query.ua
-  delete req.query.strict
-  const browsers = req.query
+  const reqQuery = Object.assign({}, req.query)
 
-  // Coerce boolean values
-  // ?ie=false&chrome=true&firefox
-  // => { ie: false, chrome: true, firefox: true }
-  Object.keys(browsers).forEach(name => {
-    const value = browsers[name]
-
-    if (value === '' || value === 'true') browsers[name] = true
-    if (value === 'false') browsers[name] = false
+  // coerce boolean query params
+  Object.keys(reqQuery).forEach(key => {
+    if (reqQuery[key] === '' || reqQuery[key] === 'true') reqQuery[key] = true
+    if (reqQuery[key] === 'false') reqQuery[key] = false
   })
 
-  return {
-    browsers,
-    debug: debug !== undefined,
-    strict: strict !== undefined,
-    ua: uaQuery || req.header('User-Agent'),
+  const { debug, mobile, strict, tablet, ua = req.header('User-Agent'), query } = reqQuery
+  delete reqQuery.debug
+  delete reqQuery.mobile
+  delete reqQuery.strict
+  delete reqQuery.tablet
+  delete reqQuery.ua
+  delete reqQuery.query
+  // all other query params are browser specifications
+  const browserParams = reqQuery
+  const browsers = {}
+
+  // Browserslist has a default query
+  // Only add browsers if there is a user query
+  if (query) {
+    // browserslist(query).forEach(result => {
+    //   const [browser, version] = result.split(' ')
+    //
+    //   TODO convert Browserslist results to bowser arguments before adding to requirements
+    //
+    //   requirements[browser] = requirements[browser] || {}
+    //   requirements[browser].minVersions = requirements[browser].minVersions || []
+    //   requirements[browser].minVersions.concat(version)
+    // })
   }
+
+  Object.keys(browserParams).forEach(browser => {
+    const specs = [].concat(browserParams[browser])
+
+    browsers[browser] = browsers[browser] || {}
+    browsers[browser].minVersions = browsers[browser].minVersions || []
+
+    specs.forEach(value => {
+      // Coerce boolean values
+      const blacklisted = value === false
+      const whitelisted = value === true
+
+      browsers[browser].blacklisted = blacklisted
+      browsers[browser].whitelisted = whitelisted
+
+      // if it is not a boolean, it is a browser version (i.e. '59')
+      if (typeof value !== 'boolean') {
+        browsers[browser].minVersions.push(value)
+      }
+    })
+  })
+
+  const args = { browsers, debug, mobile, strict, tablet, ua }
+
+  // remove undefined values
+  Object.keys(args).forEach(key => args[key] === undefined && delete args[key])
+
+  return args
 }
 
 const getRoot = (req, res) => {
-  const { browsers, debug, strict, ua } = requestToArguments(req)
+  const { browsers, debug, mobile, strict, tablet, ua } = requestToArguments(req)
 
   if (!ua) {
-    throw new HTTPError(400, 'Missing required `ua` query param. See docs https://goo.gl/RJGJgf.')
+    throw new HTTPError(400, 'Missing required `ua` query param. Docs https://goo.gl/RJGJgf.')
   }
 
-  if (!Object.keys(browsers).length) {
-    throw new HTTPError(400, 'No browsers were specified. See docs https://goo.gl/RJGJgf.')
+  if (!mobile && !tablet && !Object.keys(browsers).length) {
+    throw new HTTPError(400, 'Request has no browser requirements. Docs https://goo.gl/RJGJgf.')
   }
 
-  const result = isBrowserSupported(ua, { browsers, debug, strict })
+  const result = isBrowserSupported(ua, { browsers, debug, mobile, strict, tablet })
 
   res.json(result)
 }
@@ -51,6 +89,7 @@ const getDetect = (req, res) => {
 }
 
 module.exports = {
+  requestToArguments,
   getRoot,
   getDetect,
 }
