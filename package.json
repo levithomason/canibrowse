@@ -45,6 +45,7 @@
   "dependencies": {
     "bowser": "^1.7.1",
     "browserslist": "^2.3.3",
+    "cors": "^2.8.4",
     "express": "^4.15.4",
     "lodash": "^4.17.4",
     "node-http-error": "^2.0.0"

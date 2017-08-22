@@ -1,7 +1,13 @@
 const express = require('express')
-const app = express()
+const cors = require('cors')
 
+const app = express()
 const handlers = require('./handlers')
+
+//
+// Middleware
+//
+app.use(cors())
 
 //
 // Routes
