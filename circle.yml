@@ -9,7 +9,7 @@ jobs:
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "yarn.lock" }}
-      - run: sudo yarn global add greenkeeper-lockfile@1
+      - run: sudo yarn global add greenkeeper-lockfile@1 now
       - run: yarn
       - save_cache:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
