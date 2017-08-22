@@ -9,11 +9,11 @@
     "lint": "prettier --list-different \"**/*.js?(on|x)\" && eslint \"**/*.js?(on|x)\"",
     "lint:fix": "prettier --write \"**/*.js?(on|x)\" && eslint --fix \"**/*.js?(on|x)\"",
     "toc": "markdown-toc -i README.md",
+    "now-start": "node src",
     "precommit": "yarn toc && lint-staged",
-    "start": "node src",
-    "dev": "nodemon src",
+    "start": "nodemon src",
     "test": "jest",
-    "test:watch": "yarn jest -- --watch"
+    "test:watch": "yarn jest -- --watchAll"
   },
   "jest": {
     "collectCoverage": true,
@@ -32,6 +32,9 @@
   },
   "lint-staged": {
     "*.js?(on|x)": ["prettier --write", "eslint --fix", "git add"]
+  },
+  "now": {
+    "alias": "canibrowse.now.sh"
   },
   "engines": {
     "node": "8.2.x"
@@ -55,6 +58,7 @@
     "lint-staged": "^4.0.3",
     "markdown-toc": "^1.1.0",
     "nodemon": "^1.11.0",
+    "now": "^7.3.0",
     "prettier": "prettier/prettier#5c539b06a477995c588aaf03a4662a4ad8c68c20"
   }
 }
