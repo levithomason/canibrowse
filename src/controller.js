@@ -11,13 +11,13 @@ const isBrowserSupported = (ua = '', opts = {}) => {
 
   if (strict) {
     // When strict, a passing browser:
-    //  - must match mobile/tablet opts
+    //  - must match defined mobile/tablet opts
     //  - AND
     //  - must be specified in the browsers
     //  - must not be blacklisted
     //  - must either be whitelisted or pass the minVersions check
-    const passesMobile = !!detected.mobile === !!mobile
-    const passesTablet = !!detected.tablet === !!tablet
+    const passesMobile = mobile === undefined || !!detected.mobile === mobile
+    const passesTablet = tablet === undefined || !!detected.tablet === tablet
 
     const isValidVersion =
       !browsers ||
@@ -36,7 +36,7 @@ const isBrowserSupported = (ua = '', opts = {}) => {
     // When not strict, a passing browser:
     //  - can have no requirements
     //  - OR
-    //  - must match mobile/tablet opts
+    //  - must not fail mobile/tablet opts
     //  - must not be blacklisted
     //  - must be whitelisted or must pass the minVersions check
     const passesMobile = !(mobile === false && detected.mobile)

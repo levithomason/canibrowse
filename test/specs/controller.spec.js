@@ -99,16 +99,21 @@ describe('controller', () => {
     })
 
     describe('Whitelist specific browsers', () => {
-      const opts = { strict: true, browsers: { chrome: { whitelisted: true } } }
+      const opts = { strict: true, browsers: { safari: { whitelisted: true } } }
 
-      test('Chrome can browse', () => {
-        expect(isBrowserSupported(userAgents.chrome51Win, opts)).toMatchObject({ canBrowse: true })
-        expect(isBrowserSupported(userAgents.chrome51Mac, opts)).toMatchObject({ canBrowse: true })
-        expect(isBrowserSupported(userAgents.chrome58Mac, opts)).toMatchObject({ canBrowse: true })
-        expect(isBrowserSupported(userAgents.chrome60Mac, opts)).toMatchObject({ canBrowse: true })
+      test('Whitelisted mobile/tablet/desktop can browse', () => {
+        expect(isBrowserSupported(userAgents.safari10iOS, opts)).toMatchObject({ canBrowse: true })
+        expect(isBrowserSupported(userAgents.safari10iPad, opts)).toMatchObject({
+          canBrowse: true,
+        })
+        expect(isBrowserSupported(userAgents.safari10Mac, opts)).toMatchObject({ canBrowse: true })
       })
 
       test('Other browsers cannot browse', () => {
+        expect(isBrowserSupported(userAgents.chrome51Win, opts)).toMatchObject({ canBrowse: false })
+        expect(isBrowserSupported(userAgents.chrome51Mac, opts)).toMatchObject({ canBrowse: false })
+        expect(isBrowserSupported(userAgents.chrome58Mac, opts)).toMatchObject({ canBrowse: false })
+        expect(isBrowserSupported(userAgents.chrome60Mac, opts)).toMatchObject({ canBrowse: false })
         expect(isBrowserSupported(userAgents.firefox46Win, opts)).toMatchObject({
           canBrowse: false,
         })
@@ -119,11 +124,6 @@ describe('controller', () => {
         expect(isBrowserSupported(userAgents.msie8, opts)).toMatchObject({ canBrowse: false })
         expect(isBrowserSupported(userAgents.msie9, opts)).toMatchObject({ canBrowse: false })
         expect(isBrowserSupported(userAgents.msie11, opts)).toMatchObject({ canBrowse: false })
-        expect(isBrowserSupported(userAgents.safari10iOS, opts)).toMatchObject({ canBrowse: false })
-        expect(isBrowserSupported(userAgents.safari10iPad, opts)).toMatchObject({
-          canBrowse: false,
-        })
-        expect(isBrowserSupported(userAgents.safari10Mac, opts)).toMatchObject({ canBrowse: false })
       })
     })
 
