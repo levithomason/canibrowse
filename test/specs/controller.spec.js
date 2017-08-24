@@ -4,6 +4,20 @@ const userAgents = require('../fixtures/userAgents')
 
 describe('controller', () => {
   describe('isBrowserSupported', () => {
+    test('returns user agent detection results', () => {
+      const result = isBrowserSupported(userAgents.chrome60Mac)
+
+      expect(result).toHaveProperty('detected')
+      expect(result).toHaveProperty('detected.name')
+      expect(result).toHaveProperty('detected.version')
+    })
+
+    test('does not return browsers by default', () => {
+      const result = isBrowserSupported(userAgents.chrome60Mac)
+
+      expect(result).not.toHaveProperty('browsers')
+    })
+
     describe('IE >= 9', () => {
       const opts = { browsers: { msie: { minVersions: ['9'] } } }
 
