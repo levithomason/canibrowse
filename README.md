@@ -40,6 +40,16 @@ Response in Chrome >= 60:
 ```js
 {
   canBrowse: true           // did the user agent meet the requirements?
+
+  detected: {               // user agent detection results
+    name: 'Chrome',
+    chrome: true,
+    version: '60.0',
+    blink: true,
+    mac: true,
+    osversion: '10.12.5',
+    a: true,
+  },
 }
 ```
 
@@ -107,7 +117,7 @@ Pass `debug` to see more info on the `detection` and `requirements`.
 
 ```js
 {
-  canBrowse: true,
+  canBrowse: true           // did the user agent meet the requirements?
 
   detected: {               // user agent detection results
     name: 'Chrome',
@@ -135,9 +145,21 @@ Pass `debug` to see more info on the `detection` and `requirements`.
 
 ### Just get detection info
 
-Only returns `detected`, perhaps to do your own checks against.
+Only returns the user agent detection results, perhaps to do your own checks against.
 
 [`https://canibrowse.now.sh/detect`](https://canibrowse.now.sh/detect)
+
+```js
+{
+  name: 'Chrome',
+  chrome: true,
+  version: '60.0',
+  blink: true,
+  mac: true,
+  osversion: '10.12.5',
+  a: true,
+}
+```
 
 ### Send a custom user agent
 

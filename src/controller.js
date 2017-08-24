@@ -61,11 +61,10 @@ const isBrowserSupported = (ua = '', opts = {}) => {
   //
   // Result
   //
-  const result = { canBrowse }
+  const result = { canBrowse, detected }
 
   if (debug) {
     Object.assign(result, {
-      detected,
       strict: !!strict,
       mobile: !!mobile,
       tablet: !!tablet,
