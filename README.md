@@ -1,5 +1,5 @@
 Can I Browse
-[![CircleCI](https://img.shields.io/circleci/project/github/levithomason/canibrowse.svg?style=flat-square)]()
+[![CircleCI](https://img.shields.io/circleci/project/github/levithomason/canibrowse/master.svg?style=flat-square)]()
 [![David](https://img.shields.io/david/levithomason/canibrowse.svg?style=flat-square)]()
 ============
 
