@@ -11,6 +11,7 @@
     "toc": "markdown-toc -i README.md",
     "now-start": "node src",
     "precommit": "yarn toc && lint-staged",
+    "postinstall": "yarn lint:fix",
     "start": "nodemon src",
     "test": "jest",
     "test:watch": "yarn jest -- --watchAll"
