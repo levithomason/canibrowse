@@ -60,7 +60,7 @@
     "greenkeeper-lockfile": "^1.13.2",
     "husky": "^0.14.3",
     "jest": "^21.1.0",
-    "lint-staged": "^5.0.0",
+    "lint-staged": "^6.1.0",
     "markdown-toc": "^1.1.0",
     "nodemon": "^1.11.0",
     "prettier": "prettier/prettier#5c539b06a477995c588aaf03a4662a4ad8c68c20"
