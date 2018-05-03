@@ -41,7 +41,7 @@
     }
   },
   "engines": {
-    "node": "8.2.x"
+    "node": "10"
   },
   "dependencies": {
     "bowser": "^1.9.2",
