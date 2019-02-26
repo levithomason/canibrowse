@@ -54,7 +54,7 @@
   "devDependencies": {
     "babel-eslint": "^8.2.1",
     "eslint": "^4.17.0",
-    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-json": "^1.2.0",
     "eslint-plugin-prettier": "^2.6.0",
     "greenkeeper-lockfile": "^1.13.2",
