@@ -563,9 +563,10 @@ boom@5.x.x:
   dependencies:
     hoek "4.x.x"
 
-bowser@^1.9.2:
-  version "1.9.2"
-  resolved "https://registry.yarnpkg.com/bowser/-/bowser-1.9.2.tgz#d66fc868ca5f4ba895bee1363c343fe7b37d3394"
+bowser@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/bowser/-/bowser-2.2.1.tgz#a3763878ba5a63703a9a2209cf87d7c2705f13e2"
+  integrity sha512-5juDN48U85WUgYctziMoE4KMZ0LhfJzKmTWgdCVrkZQsmQxlOpDhbS91JnXiNmyfQkgppbuF6Vv3z+fuxz86pQ==
 
 boxen@^1.2.1:
   version "1.3.0"
