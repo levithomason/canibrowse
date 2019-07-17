@@ -44,7 +44,7 @@
     "node": "8.2.x"
   },
   "dependencies": {
-    "bowser": "^1.9.2",
+    "bowser": "^2.5.1",
     "browserslist": "^3.1.0",
     "cors": "^2.8.4",
     "express": "^4.16.2",
